@@ -1,0 +1,73 @@
+{%  extends "base.html" %}
+
+{% block  content%}
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-sm-4">
+
+            <img src="{{ product.image.url }}" style="width: 80%; height: 300px">
+
+        </div>
+            <div class="col-sm-4">
+                 <h3 class="text-center">{{ product.title }}</h3>
+                    <p> {{ product.description|linebreaks }}</p>
+
+                        <hr>
+                  <P style="font-size: 20px">Цена <strong>{{ product.price }} </strong>  рублей в неделю</P>
+            <a href="{% url 'add_to_cart' product_slug=product.slug  %}"><button class="btn btn-danger">Добавить в корзину</button> </a>
+                <p></p>
+
+            </div>
+
+        <div class="col-md-3">
+
+        </div>
+
+         <div class="col-md-7">
+
+            <div>
+
+                  <!-- Навигационные вкладки -->
+                  <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#indication" aria-controls="indication" role="tab" data-toggle="tab">Показания</a></li>
+                    <li role="presentation"><a href="#contraindications" aria-controls="contraindications" role="tab" data-toggle="tab">Противопоказания</a></li>
+                    <li role="presentation"><a href="#selection_of_sizes" aria-controls="selection_of_sizes" role="tab" data-toggle="tab">Подбор размера</a></li>
+                    <li role="presentation"><a href="#instruction" aria-controls="instruction" role="tab" data-toggle="tab">Инструкция</a></li>
+                  </ul>
+
+                  <!-- Вкладки панелей -->
+                  <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="indication">
+                       {{ product.indications|linebreaks }}
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="contraindications">
+                        {{ product.contraindications|linebreaks }}
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="selection_of_sizes">
+                        <img src="{{ product.selection_of_sizes.url }}">
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="instruction">
+                        <a class="link" href="{{ product.instruction_pdf.url }}">Скачать инструкцию</a>
+
+                    </div>
+                  </div>
+
+                </div>
+         </div>
+
+
+
+    </div>
+
+
+
+
+
+</div>
+
+
+
+
+{% endblock content  %}
