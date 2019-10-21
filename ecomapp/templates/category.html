@@ -1,19 +1,17 @@
 {%  extends "base.html" %}
 
 {% block  content%}
-<div class="col-sm-9">
-    <h2> {{ category.name }}</h2>
-<hr>
-{% for product in product_of_category %}
-<div class="col-sm-4">
-<img src="{{ product.image.url }}" style="height: 100%; width: 300px">
-    <h4 class="text-center"><a href="{{ product.get_absolut_url }}">{{ product.title }}</a></h4>
-    <p class="text-center" style="font-size: 20px">Цена <strong>{{ product.price }}</strong> в неделю</p>
-<p class="text-center"> <a href="#"><button class="btn btn-danger">Добавить в корзину</button> </a></p>
-
-</div>
-
-{% endfor %}
-</div>
+    <div class="container">
+        <div class="category">
+            {% for product in product_of_category %}
+                <div class="col-md-4" style="padding-left: 10%">
+                    <img src="{{ product.image.url }}" style="height: 100%; width: 300px; border: 2px solid #010101;">
+                    <h4 class="text-center" ><a href="{{ product.get_absolut_url }}">{{ product.title }}</a></h4>
+                    <p class="text-center" style="font-size: 20px">Цена <strong>{{ product.price }}</strong> в неделю</p>
+{#<p class="text-center"> <a href="#"><button class="btn btn-danger">Добавить в корзину</button> </a></p>#}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 
 {% endblock content  %}

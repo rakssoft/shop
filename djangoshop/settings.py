@@ -25,12 +25,13 @@ SECRET_KEY = 'v_me!py1wqweswzq67vk$)r$r1fj(@9sxx3+-ms1_guv&k#uh_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','localhost']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -52,10 +53,21 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'djangoshop.urls'
 
+# Настройки почтового сервера
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_HOST_USER = 'rufedor@mail.ru'
+EMAIL_HOST_PASSWORD = 'RFM8zh4cfc'
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+DEFAULT_FROM_EMAIL = 'rufedor@mail.ru'
+
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'templates')]
+
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -119,8 +131,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
+
+STATIC_DIR = os.path.join(BASE_DIR, '/static_in_dev')
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

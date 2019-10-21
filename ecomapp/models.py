@@ -2,8 +2,9 @@ from django.db import models
 from django.core.files import File
 from django.db.models.signals import pre_save
 from django.utils.text import slugify
-from transliterate import translit
+#from transliterate import translit
 from django.urls import reverse
+
 from django.utils.safestring import mark_safe
 
 # Create your models here.
@@ -100,3 +101,18 @@ class Images(models.Model):
 
     def __str__(self):
         return self.title
+
+class MailBox(models.Model):
+    class Meta:
+        db_table = 'contact_form'
+        verbose_name = 'Контактная форма'
+        verbose_name_plural = 'Форма обратной связи'
+
+    subject = models.CharField(max_length=150, verbose_name='Имя пользователя')
+    sender = models.EmailField(verbose_name='E-mail - пользователя')
+    phone = models.CharField(max_length=15, verbose_name='Телефон')
+    message = models.TextField(verbose_name='Сообщение')
+    copy = models.BooleanField()
+
+    def __unicode__(self):
+        return self.subject
