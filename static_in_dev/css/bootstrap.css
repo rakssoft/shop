@@ -4589,13 +4589,13 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   color: #ccc;
 }
 .navbar-inverse {
-  background-color: #222;
+  background-color: #ffffff;
   border-color: #080808;
 }
 .navbar-inverse .navbar-brand {
-  color: #9d9d9d;
+  color: #010101;
 }
-.navbar-inverse .navbar-brand:hover,
+.navbar-inverse .navbar-brand:hover,z
 .navbar-inverse .navbar-brand:focus {
   color: #fff;
   background-color: transparent;
@@ -4604,7 +4604,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   color: #9d9d9d;
 }
 .navbar-inverse .navbar-nav > li > a {
-  color: #9d9d9d;
+  color: #010101;
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
@@ -6755,3 +6755,4 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+
