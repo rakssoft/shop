@@ -1,0 +1,31 @@
+{%  extends 'base.html' %}
+
+
+
+{% block content %}
+
+<H3 class="text-center">Ваша корзина</H3>
+<br>
+<table class="table">
+<tr>
+    <td class="text-center"><strong>Товар</strong></td>
+    <td class="text-center"><strong>Колличество</strong></td>
+    <td class="text-center"><strong>Цена</strong></td>
+    <td></td>
+</tr>
+{% for item in cart.item.all %}
+    <tr>
+    <td class="text-center"> {{ item.product.title }}</td>
+    <td class="text-center"> {{ item.qty }}</td>
+    <td class="text-center"> {{ item.item_tottal }}</td>
+    <td></td>
+    </tr>
+
+{% endfor %}
+
+    </table>
+
+
+
+
+{% endblock content %}
