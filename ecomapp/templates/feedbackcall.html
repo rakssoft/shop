@@ -1,31 +1,26 @@
-{##}
-{#<!-- Button trigger modal --><div id="modal" style="position: relative">#}
-{#  <button id="button" style="position: absolute; left: 200px; top: 300px" />#}
-{#</div>#}
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Задать свой вопрос .
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">
+  Мы перезвоним Вам.
 </button>
 
 <!-- Modal -->
-<div class="modal fade" style="position: center"  id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel1">Modal title</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        <form id="contact-form" action="{% url 'feedback' %}" method="post">
+      <div class="modal-body" style="overflow: hidden">
+        <form id="contact-form" action="{% url 'feedbackcall' %}" method="post">
     {% csrf_token %}
     {{ form.non_field_errors }}
     <fieldset>
         <label>{{ form.subject.errors }}
             <input name="subject" type="text" value="Ваше имя" onBlur="if(this.value=='') this.value='Имя'" onFocus="if(this.value =='Имя' ) this.value=''" />
-        </label>
-        <label>{{ form.sender.errors }}
-            <input name="sender" type="email" value="Ваш e-mail" onBlur="if(this.value=='') this.value='E-mail'" onFocus="if(this.value =='E-mail' ) this.value=''" />
         </label>
         <label>{{ form.phone.errors }}
             <input name="phone" type="tel" pattern="[0-9]{11}" value="Ваш телефон" onBlur="if(this.value=='') this.value='phone'" onFocus="if(this.value =='phone' ) this.value=''" />
@@ -33,9 +28,8 @@
         {{ form.message.errors }}
         <textarea name="message" onBlur="if(this.value=='') this.value='Сообщение'" onFocus="if(this.value =='Сообщение' ) this.value=''">Сообщение</textarea>
         {{ form.copy.errors }}
-        <label for="id_copy">{{ form.copy }} Отправить копию себе </label>
         <div class="buttons-wrapper">
-            <input type="button" onclick="document.getElementById('contact-form').reset()" value="Очистить">
+            <input type="button" onclick="document.getElementById('contact-form-call').reset()" value="Очистить">
             <input type="submit" class="btn btn-success" value="Отправить сообщение"/>
         </div>
     </fieldset>
@@ -47,6 +41,5 @@
     </div>
   </div>
 </div>
-
 
 

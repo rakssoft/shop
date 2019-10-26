@@ -1,13 +1,15 @@
-{##}
-{#<!-- Button trigger modal --><div id="modal" style="position: relative">#}
-{#  <button id="button" style="position: absolute; left: 200px; top: 300px" />#}
-{#</div>#}
+{%  extends "base.html" %}
+
+{% block  content%}
+
+    <H3><center><strong>Тест обратной связи.</strong></center></H3>
+<!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Задать свой вопрос .
+  Запустить модальное окно
 </button>
 
 <!-- Modal -->
-<div class="modal fade" style="position: center"  id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -17,18 +19,18 @@
         </button>
       </div>
       <div class="modal-body">
-        <form id="contact-form" action="{% url 'feedback' %}" method="post">
+        <form id="contact-form" action="{% url 'email' %}" method="post">
     {% csrf_token %}
     {{ form.non_field_errors }}
     <fieldset>
         <label>{{ form.subject.errors }}
-            <input name="subject" type="text" value="Ваше имя" onBlur="if(this.value=='') this.value='Имя'" onFocus="if(this.value =='Имя' ) this.value=''" />
+            <input name="subject" type="text" value="Имя" onBlur="if(this.value=='') this.value='Имя'" onFocus="if(this.value =='Имя' ) this.value=''" />
         </label>
         <label>{{ form.sender.errors }}
-            <input name="sender" type="email" value="Ваш e-mail" onBlur="if(this.value=='') this.value='E-mail'" onFocus="if(this.value =='E-mail' ) this.value=''" />
+            <input name="sender" type="text" value="E-mail" onBlur="if(this.value=='') this.value='E-mail'" onFocus="if(this.value =='E-mail' ) this.value=''" />
         </label>
         <label>{{ form.phone.errors }}
-            <input name="phone" type="tel" pattern="[0-9]{11}" value="Ваш телефон" onBlur="if(this.value=='') this.value='phone'" onFocus="if(this.value =='phone' ) this.value=''" />
+            <input name="phone" type="text" value="phone" onBlur="if(this.value=='') this.value='phone'" onFocus="if(this.value =='phone' ) this.value=''" />
         </label>
         {{ form.message.errors }}
         <textarea name="message" onBlur="if(this.value=='') this.value='Сообщение'" onFocus="if(this.value =='Сообщение' ) this.value=''">Сообщение</textarea>
@@ -50,3 +52,4 @@
 
 
 
+{% endblock content  %}

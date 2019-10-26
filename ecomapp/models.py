@@ -108,10 +108,10 @@ class MailBox(models.Model):
         verbose_name = 'Контактная форма'
         verbose_name_plural = 'Форма обратной связи'
 
-    subject = models.CharField(max_length=150, verbose_name='Имя пользователя')
+    subject = models.CharField(max_length=20, verbose_name='Имя пользователя')
     sender = models.EmailField(verbose_name='E-mail - пользователя')
-    phone = models.CharField(max_length=15, verbose_name='Телефон')
-    message = models.TextField(verbose_name='Сообщение')
+    phone = models.CharField(max_length=11, verbose_name='Телефон')
+    message = models.TextField(max_length=150, verbose_name='Сообщение')
     copy = models.BooleanField()
 
     def __unicode__(self):

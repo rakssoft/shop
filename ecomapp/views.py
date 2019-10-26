@@ -3,11 +3,40 @@ from ecomapp.models import Category, Product, CartItem, Cart, Images, MailBox
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
-from .forms import ContactForm
+from .forms import ContactForm, ContactFormCall
 
 
+# Create your views here.
+def feedbackcall(reguest):
+    if reguest.method == 'POST':
+        form = ContactFormCall(reguest.POST)
+        # Если форма заполнена корректно, сохраняем все введённые пользователем значения
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            phone = form.cleaned_data['phone']
+            message = form.cleaned_data['message']
+            copy = form.cleaned_data['copy']
+            recepients = ['rufedor@mail.ru']
 
-def emailView(reguest):
+            # Положим копию письма в базу данных
+            MailBox.objects.create(subject=subject, phone=phone, message=message, copy=copy)
+
+            # Если пользователь захотел получить копию себе, добавляем его в список получателей
+            try:
+                send_mail(subject, message, phone, ['rufedor@mail.ru'] , recepients)
+
+            except BadHeaderError: #Защита от уязвимости
+                return render(reguest, 'feedback_error.html', {'form': form})
+                # print("ne rabotaet")
+            # Переходим на другую страницу, если сообщение отправлено
+            return render(reguest, 'thanks.html', {'form': form})
+    else:
+        form = ContactFormCall()
+    # Выводим форму в шаблон
+    return render(reguest, 'base.html', {'form': form})
+
+
+def feedback(reguest):
     if reguest.method == 'POST':
         form = ContactForm(reguest.POST)
         # Если форма заполнена корректно, сохраняем все введённые пользователем значения
@@ -17,7 +46,6 @@ def emailView(reguest):
             phone = form.cleaned_data['phone']
             message = form.cleaned_data['message']
             copy = form.cleaned_data['copy']
-
             recepients = ['rufedor@mail.ru']
 
             # Положим копию письма в базу данных
@@ -29,18 +57,20 @@ def emailView(reguest):
             try:
 
                 send_mail(subject, message, phone, ['rufedor@mail.ru'] , recepients)
-                print("doljno rabotat")
+
             except BadHeaderError: #Защита от уязвимости
-                return HttpResponse('Invalid header found')
-                print("ne rabotaet")
+                return render(reguest, 'feedback_error.html', {'form': form})
+                # print("ne rabotaet")
             # Переходим на другую страницу, если сообщение отправлено
-            print("отправлено")
-        #    return HttpResponseRedirect('/mystudio/thanks/')
+            return render(reguest, 'thanks.html', {'form': form})
+
+
+
 
     else:
         form = ContactForm()
     # Выводим форму в шаблон
-    return render(reguest, 'email.html', {'form': form})
+    return render(reguest, 'o_nas.html', {'form': form})
 # Create your views here.
 
 def base_view(request):
@@ -142,6 +172,14 @@ def add_to_cart_view(request, product_slug):
         cart.item.add(new_item)
         cart.save()
         return HttpResponseRedirect('/cart/')
+
+def thanks(request):
+
+    return render(request, 'thanks.html')
+
+def feedback_error(request):
+
+    return render(request, 'feedback_error.html')
 
 
 def o_nas(request):
@@ -257,6 +295,6 @@ def base2(request):
         'cart': cart,
         'product': product,
     }
-    return render(request, 'base2.html', context)
+    return render(request, 'test.html', context)
 
 
