@@ -69,7 +69,6 @@ EMAIL_USE_SSL = True
 DEFAULT_FROM_EMAIL = 'rufedor@mail.ru'
 
 
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
