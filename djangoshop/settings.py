@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 import django_heroku
+import sys
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 
 
 
@@ -60,13 +63,26 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'djangoshop.urls'
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'rakssoft'
+EMAIL_HOST_PASSWORD = 'Qazwsxedcr123'
+SENDGRID_API_KEY = os.getenv('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')
+
+
+
+
+DEFAULT_FROM_EMAIL = 'rufedor@mail.ru' # this is the sendgrid email
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
 # Настройки почтового сервера
-EMAIL_HOST = 'smtp.mail.ru'
-EMAIL_HOST_USER = 'rufedor@mail.ru'
-EMAIL_HOST_PASSWORD = 'RFM8zh4cfc'
-EMAIL_PORT = 465
-EMAIL_USE_SSL = True
-DEFAULT_FROM_EMAIL = 'rufedor@mail.ru'
+# EMAIL_HOST = 'smtp.mail.ru'
+# EMAIL_HOST_USER = 'rufedor@mail.ru'
+# EMAIL_HOST_PASSWORD = 'RFM8zh4cfc'
+# EMAIL_PORT = 465
+# EMAIL_USE_SSL = True
+
 
 
 TEMPLATES = [
