@@ -1,0 +1,320 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Light Medical Ufa</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link  rel='stylesheet' href='{% static "css/bootstrap.css" %}'>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static "css/shop-homepage.css" %}"/>
+
+    <link href='https://fonts.googleapis.com/css?family=Montserrat|Cardo' rel='stylesheet' type='text/css'>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+</script>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script  src = " https://cdnjs.cloudflare.com/ajax/libs/slideout/1.0.1/slideout.min.js " > </script >
+
+<script type="text/javascript">
+
+
+</script>
+{#    Задание#}
+{#    1 основное меню в карусели сделать#}
+{#    2 выпадающее меню  на всех страницах#}
+    {#    меня не раскрывается полность при нажатии на каталог  разобраться со стилями css #}
+
+<style type="text/css">
+   A {
+    color: black; /* Цвет ссылок */
+   }
+   A:active {
+    color: #1063ff; /* Цвет активных ссылок */
+   }
+</style>
+<style type="text/css">
+    .to_top { position: fixed; top: 0px;z-index: 5;right: 30% }
+</style>
+
+
+
+<body>
+ <nav id="menu">
+      <h2>Menu</h2>
+
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Каталог продукции <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                {% for category in categorise %}
+                                    <li><a href="{{category.get_absolut_url }}">{{ category.name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    </ul>
+
+                        <li><a href="{% url 'o_nas' %}">О нас</a></li>
+                        <li><a href="#">Новости</a></li>
+                        <li><a href="{% url 'contact' %}">Контакты</a></li>
+                        <li><a href="#">Онлайн диагностика</a> </li>
+
+
+
+    </nav>
+
+
+
+    <header class="main_h">
+    <div class="row">
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                            <a href="/">Легкая медицина</a>
+                        <nav>
+                            <ul>
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Каталог продукции</a>
+                                <li><a href="{% url 'o_nas' %}">О нас</a></li>
+                                <li><a href="#">Новости</a></li>
+                                <li><a href="{% url 'contact' %}">Контакты</a></li>
+
+
+                            </ul>
+                        </nav>
+                    </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        {% for category in categorise %}
+                            <li><a href="{{category.get_absolut_url }}">{{ category.name }}</a></li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+
+
+ <main id="panel">
+        <div class="sup">
+        <button class="toggle-button">☰</button>
+       </div>
+
+{#начало #}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+
+                        <a href="/"><img class="logo" src="/media/image/logo.jpg" ></a>
+
+                </div>
+                <div class="col-xs-8 col-sm-4 col-md-4 col-lg-4">
+
+                        <a href="/"><img class="logo2"  src="/media/image/logo2.jpg"></a>
+
+                    <a class="phone" href="tel:+79659416077"><strong><br>+7 (937) 472-42-20</strong></a>
+                    
+                </div>
+                <div class="col-sm-4 col-md-4 col-lg-4">
+                    <div class="casper" style="float: right">
+                        <button type="button" class="btn_feedback" href="tel:+79659416077"><img class="callback-img" src="/media/image/callback.gif"/></button>
+
+                        <p>{% include 'feedbackcall.html' %}</p>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+{#меню навбар #}
+        <div class="navbar navbar-inverse">
+            <div class="container" style="padding-left: 120px">
+{#вот что нужно убрать #}
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown dropmenu" >
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Каталог продукции <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                {% for category in categorise %}
+                                    <li><a href="{{category.get_absolut_url }}">{{ category.name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="{% url 'o_nas' %}">О нас</a></li>
+                        <li><a href="#">Новости</a></li>
+                        <li><a href="{% url 'contact' %}">Контакты</a></li>
+                        <li><a href="#">Онлайн диагностика</a> </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+                        <!-- Page Content -->
+        {% block content %}
+            <!--Карусель -->
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                              <!-- Показатели -->
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                </ol>
+                <!-- Обертка для слайдов -->
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <img src="/media/carusel/top1.jpg" alt="..." style="padding-left: 10%">
+                        <div class="carousel-caption">
+{#                            <h3>..fdsfsdfsfd.</h3>#}
+{#                            <p>..sdfsdfsdfsd.</p>#}
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="/media/carusel/top2.png" alt="..." style="padding-left: 10%">
+                        <div class="carousel-caption">
+
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="/media/carusel/top3.jpg" style="padding-left: 10%">
+                        <div class="carousel-caption">
+
+                        </div>
+                    </div>
+
+                </div>
+                              <!-- Элементы управления -->
+                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        {% endblock content%}
+    </main>
+
+    <!-- /.container -->
+
+{#        <hr>#}
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Put this script tag to the <head> of your page -->
+                    <script type="text/javascript" src="https://vk.com/js/api/share.js?95" charset="windows-1251"></script>
+
+                        <!-- Put this script tag to the place, where the Share button will be -->
+                    <script type="text/javascript"><!--
+                    document.write(VK.Share.button(false,{type: "round", text: "Сохранить"}));
+                    --></script>
+                    <div><h4>Ортез Уфа &copy; 2018</h4>
+
+
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src='{% static "js/jquery.js" %}'></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <<script src='{% static "js/bootstrap.min.js" %}'></script>
+    <script type="text/javascript">
+$(document).ready(function() {
+var start_pos = $('#stick_menu').offset().top;
+ $(window).scroll(function(){
+  if ($(window).scrollTop()>=start_pos) {
+      if ($('#stick_menu').hasClass()==false) $('#stick_menu').addClass('to_top');
+  }
+  else $('#stick_menu').removeClass('to_top');
+ });
+});
+// Sticky Header
+$(window).scroll(function() {
+
+    if ($(window).scrollTop() > 100) {
+        $('.main_h').addClass('sticky');
+    } else {
+        $('.main_h').removeClass('sticky');
+    }
+});
+
+// Mobile Navigation
+$('.mobile-toggle').click(function() {
+    if ($('.main_h').hasClass('open-nav')) {
+        $('.main_h').removeClass('open-nav');
+    } else {
+        $('.main_h').addClass('open-nav');
+    }
+});
+
+$('.main_h li a').click(function() {
+    if ($('.main_h').hasClass('open-nav')) {
+        $('.navigation').removeClass('open-nav');
+        $('.main_h').removeClass('open-nav');
+    }
+});
+
+// Navigation Scroll - ljepo radi materem
+$('nav a').click(function(event) {
+    var id = $(this).attr("href");
+    var offset = 70;
+    var target = $(id).offset().top - offset;
+    $('html, body').animate({
+        scrollTop: target
+    }, 500);
+    event.preventDefault();
+});
+
+
+
+
+</script>
+
+<script src="/static_in_dev/dist/slideout.min.js"></script>
+
+<script>
+  var slideout = new Slideout({
+    'panel': document.getElementById('panel'),
+    'menu': document.getElementById('menu'),
+    'padding': 256,
+    'tolerance': 70
+  });
+
+  // Toggle button
+  document.querySelector('.toggle-button').addEventListener('click', function() {
+    slideout.toggle();
+  });
+</script>
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+{##}
+{#<!-- Button trigger modal --><div id="modal" style="position: relative">#}
+{#  <button id="button" style="position: absolute; left: 200px; top: 300px" />#}
+{#</div>#}
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Задать свой вопрос .
+</button>
+
+<!-- Modal -->
+<div class="modal fade" style="position: center"  id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="contact-form" action="{% url 'feedback' %}" method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <fieldset>
+        <label>{{ form.subject.errors }}
+            <input name="subject" type="text" value="Имя" onBlur="if(this.value=='') this.value='Имя'" onFocus="if(this.value =='Имя' ) this.value=''" />
+        </label>
+        <label>{{ form.sender.errors }}
+            <input name="sender" type="email" value="E-mail" onBlur="if(this.value=='') this.value='E-mail'" onFocus="if(this.value =='E-mail' ) this.value=''" />
+        </label>
+        <label>{{ form.phone.errors }}
+            <input name="phone" type="tel" pattern="[0-9]{11}" value="phone" onBlur="if(this.value=='') this.value='phone'" onFocus="if(this.value =='phone' ) this.value=''" />
+        </label>
+        {{ form.message.errors }}
+        <textarea name="message" onBlur="if(this.value=='') this.value='Сообщение'" onFocus="if(this.value =='Сообщение' ) this.value=''">Сообщение</textarea>
+        {{ form.copy.errors }}
+        <label for="id_copy">{{ form.copy }} Отправить копию себе </label>
+        <div class="buttons-wrapper">
+            <input type="button" onclick="document.getElementById('contact-form').reset()" value="Очистить">
+            <input type="submit" class="btn btn-success" value="Отправить сообщение"/>
+        </div>
+    </fieldset>
+</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

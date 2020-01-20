@@ -1,0 +1,35 @@
+{%  extends "base.html" %}
+
+
+
+{% block  content%}
+
+
+            <div class="container center-block">
+				<h1><center>Контакты.</center></h1>
+{#				<hr class="h" />#}
+                    <div class="contact">
+                        <img src="{{ image.image_phone.url }}" >
+                        <a href="tel:+79659416077">+7 (937) 472-42-20</a>
+                    <p></p>
+                        <img src="{{ image.image_vk.url }}">
+                        <a href="https://vk.com/ortezufa">vk.com/ortezufa</a>
+                        <script type="text/javascript" src="https://vk.com/js/api/openapi.js?160"></script>
+                        <p></p>
+                        <img src="{{ image.image_fb.url }}">
+                        <a href="https://facebook.com/groups/555176398291023/">facebook.com/ortezufa</a>
+                        <p></p>
+                        <!-- VK Widget -->
+                        <div id="vk_groups"></div>
+                        <script type="text/javascript">
+                        VK.Widgets.Group("vk_groups", {mode: 3, no_cover: 1, width: "265"}, 118400341);
+                        </script>
+                        <img src="/media/image/adres.jpg"width="600" height="350">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2301.5674811853896!2d56.0571493161607!3d54.769990980302055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x43d93835981b1dab%3A0x7de0d5ca49da1c00!2z0YPQuy4g0JzQsNGA0YjQsNC70LAg0JbRg9C60L7QstCwLCAxMCwg0KPRhNCwLCDQoNC10YHQvy4g0JHQsNGI0LrQvtGA0YLQvtGB0YLQsNC9LCA0NTAxMDU!5e0!3m2!1sru!2sru!4v1571476167700!5m2!1sru!2sru" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                    </div>
+                    <script type="text/javascript" src="https://vk.com/js/api/openapi.js?160"></script>
+
+            </div>
+
+
+{% endblock content  %}
